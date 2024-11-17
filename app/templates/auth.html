@@ -1,0 +1,200 @@
+{% extends "base.html" %} {% block content %}
+<div class="min-h-screen bg-slate-50 flex flex-col">
+  <header class="border-b bg-white">
+    <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="Kandidat Logo"
+          class="h-8 w-auto"
+        />
+      </a>
+    </div>
+  </header>
+
+  <main
+    class="flex-1 container mx-auto px-4 py-8 flex items-center justify-center"
+  >
+    <div class="w-full max-w-md bg-white rounded-lg shadow-md">
+      <div class="p-6">
+        <h2 class="text-2xl font-bold text-center text-[#2d3e50]">
+          Bienvenue sur Kandidat
+        </h2>
+        <p class="text-center text-gray-600 mt-2">
+          Connectez-vous ou créez un compte pour commencer
+        </p>
+
+        <div class="mt-6">
+          <div class="border-b border-gray-200">
+            <div class="grid grid-cols-2">
+              <button
+                class="py-2 px-4 text-center border-b-2 border-primary text-primary"
+                id="loginTab"
+              >
+                Se connecter
+              </button>
+              <button
+                class="py-2 px-4 text-center text-gray-500 hover:text-primary"
+                id="registerTab"
+              >
+                Créer un compte
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-6" id="loginForm">
+            <form>
+              <div class="space-y-4">
+                <div class="space-y-2">
+                  <label
+                    for="email"
+                    class="block text-sm font-medium text-gray-700"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    placeholder="votre@email.com"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label
+                    for="password"
+                    class="block text-sm font-medium text-gray-700"
+                    >Mot de passe</label
+                  >
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="w-full py-2 px-4 bg-[#E67E22] text-white rounded-md hover:bg-[#E67E22]/90"
+                >
+                  Se connecter
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="mt-6 hidden" id="registerForm">
+            <form>
+              <div class="space-y-4">
+                <div class="space-y-2">
+                  <label
+                    for="register-email"
+                    class="block text-sm font-medium text-gray-700"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    id="register-email"
+                    name="email"
+                    required
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    placeholder="votre@email.com"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label
+                    for="register-password"
+                    class="block text-sm font-medium text-gray-700"
+                    >Mot de passe</label
+                  >
+                  <input
+                    type="password"
+                    id="register-password"
+                    name="password"
+                    required
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label
+                    for="confirm-password"
+                    class="block text-sm font-medium text-gray-700"
+                    >Confirmer le mot de passe</label
+                  >
+                  <input
+                    type="password"
+                    id="confirm-password"
+                    name="confirm-password"
+                    required
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="w-full py-2 px-4 bg-[#E67E22] text-white rounded-md hover:bg-[#E67E22]/90"
+                >
+                  Créer un compte
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="p-6 border-t flex justify-center">
+        <a
+          href="/forgot-password"
+          class="text-sm text-[#2d3e50] hover:text-[#E67E22] transition-colors"
+        >
+          Mot de passe oublié ?
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t mt-8 bg-white">
+    <div
+      class="container mx-auto px-4 h-16 flex items-center justify-between text-sm text-[#2d3e50]/80"
+    >
+      <p>© Kandidat 2024</p>
+      <div class="flex gap-4">
+        <a href="/privacy" class="hover:text-[#E67E22]"
+          >Politique de confidentialité</a
+        >
+        <a href="/terms" class="hover:text-[#E67E22]"
+          >Conditions d'utilisation</a
+        >
+        <a href="/legal" class="hover:text-[#E67E22]">Mentions légales</a>
+        <a href="/contact" class="hover:text-[#E67E22]">Contact</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const loginTab = document.getElementById("loginTab");
+    const registerTab = document.getElementById("registerTab");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+
+    loginTab.addEventListener("click", () => {
+      loginTab.classList.add("border-b-2", "border-primary", "text-primary");
+      registerTab.classList.remove(
+        "border-b-2",
+        "border-primary",
+        "text-primary"
+      );
+      loginForm.classList.remove("hidden");
+      registerForm.classList.add("hidden");
+    });
+
+    registerTab.addEventListener("click", () => {
+      registerTab.classList.add("border-b-2", "border-primary", "text-primary");
+      loginTab.classList.remove("border-b-2", "border-primary", "text-primary");
+      registerForm.classList.remove("hidden");
+      loginForm.classList.add("hidden");
+    });
+  });
+</script>
+{% endblock %}
