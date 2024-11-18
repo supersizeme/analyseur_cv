@@ -1,0 +1,22 @@
+# Environnement virtuel
+venv/
+env/
+*.pyc
+__pycache__/
+
+# Fichiers système
+.DS_Store
+.env
+
+# Fichiers IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Fichiers de log
+*.log
+
+# Fichiers de base de données
+*.db
+*.sqlite3
